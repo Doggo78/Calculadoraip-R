@@ -1,9 +1,7 @@
 ip <- readline("Ingrese la ip formato x.x.x.x/x ")
 split_ip <- strsplit(ip, "/")[[1]]
-maski <- split_ip[2]
-ip <- split_ip[1]
-split_ip <- as.vector(strsplit(ip, "\\.| "))
-ip <- as.numeric(as.character(unlist(split_ip)))
+ipcorrect <- split_ip
+options(warn=-1)
 residuo <- function(residuo1) {
     residuo_1 <- residuo1 %% 2
     if (residuo_1 == 0) {
@@ -175,7 +173,17 @@ dhost <- function(numero) {
     hostdisponibles <- 2^(32 - numero) - 2
     print(paste("Cantidad de host disponibles: ", hostdisponibles))
 }
-dsubnet(maski)
-dhost(maski)
-mask(maski)
-ipbinario(ip)
+
+if(length(ipcorrect) == 2){
+    print("Formato correcto")
+    maski <- split_ip[2]
+    ip <- split_ip[1]
+    split_ip <- as.vector(strsplit(ip, "\\.| "))
+    ip <- as.numeric(as.character(unlist(split_ip)))
+    dsubnet(maski)
+    dhost(maski)
+    mask(maski)
+    ipbinario(ip)
+}else{
+    print("Ingrese un formato de IP correcto")
+}
