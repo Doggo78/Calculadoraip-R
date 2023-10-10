@@ -174,7 +174,7 @@ dhost <- function(numero) {
     print(paste("Cantidad de host disponibles: ", hostdisponibles))
 }
 
-if(length(ipcorrect) == 2){
+if(length(ipcorrect) == 2 && is.numeric(ipcorrect) == TRUE){
     print("Formato correcto")
     maski <- split_ip[2]
     ip <- split_ip[1]
